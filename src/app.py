@@ -3,14 +3,12 @@ from langchain_core.messages import AIMessage, HumanMessage
 from langchain_community.document_loaders import WebBaseLoader
 from langchain_community.vectorstores import Chroma
 from langchain_openai import OpenAIEmbeddings, ChatOpenAI
-from langchain.text_splitter import RecursiveCharecterTextSplitter
+from langchain.text_splitter import RecursiveCharacterTextSplitter
 from dotenv import load_dotenv
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 from langchain.chains.combine_documents import creat_stuff_documents_chain
 from langchain.chains import create_history_aware_retriever, create_retrieval_chain
 
-
-# API KEY - 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
 
 # this function will load our openAi secret key from .env file 
 load_dotenv()
@@ -27,7 +25,7 @@ def get_data(website_url):
     documents = loader.load()
 
     # splitting data of the website into senctences, pharagraphs, etc
-    text_splitter = RecursiveCharecterTextSplitter()
+    text_splitter = RecursiveCharacterTextSplitter()
     document_chunks = text_splitter.split_documents(documents)
 
     # convering data in docs to numerical/binary format for easier understanding for machine learning/ai
